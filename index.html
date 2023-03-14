@@ -14,8 +14,8 @@
     <div id="app">
 
         <div class="container">
-
-            <div class="slider-wrapper" tabindex="0">
+            <!-- ho aggiunto due eventi @mouseover e @mouseleave all'elemento con classe slider-wrapper e li collego a dei metodi creati in script.js da riga 65 -->
+            <div class="slider-wrapper" tabindex="0" @mouseover="stopAutoplay" @mouseleave="startAutoplay">
                 <!-- uso gli attributi v-for e v-show per iterare attraverso gli slide e visualizzare solo lo slide corrente. -->
                 <div class="item" v-for="(slide, index) in slides" :key="index" v-show="index === currentSlide">
                     <img :src="slide.image" :alt="slide.title">

@@ -56,16 +56,48 @@ createApp({
                 }
             ],
             // Dentro return definisco una variabile currentSlide che tiene traccia dell'indice dello slide corrente.
-            currentSlide: 0
+            currentSlide: 0,
+            // autoplay allo slider
+            autoplayIntervallo: null
         }
     },
-    // accanto a data() definisco i metodi nextSlide e prevSlide per navigare avanti e indietro tra gli slide del carosello
+
+    created() {
+        this.startAutoplay();
+    },
+    // accanto a data() e created() definisco i metodi nextSlide e prevSlide per navigare avanti e indietro tra gli slide del carosello + startAutoplay e stopAutoplay che comunicano in index.html a riga18
     methods: {
         nextSlide() {
             this.currentSlide = (this.currentSlide + 1) % this.slides.length;
         },
         prevSlide() {
             this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        },
+        startAutoplay() {
+            this.autoplayIntervallo = setInterval(() => {
+                this.nextSlide();
+            }, 3000);
+        },
+        stopAutoplay() {
+            clearInterval(this.autoplayIntervallo);
         }
     }
 }).mount('#app');
+
+
+
+
+
+
+
+
+    // accanto a data() definisco i metodi nextSlide e prevSlide per navigare avanti e indietro tra gli slide del carosello
+//     methods: {
+//         nextSlide() {
+//             this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+//         },
+//         prevSlide() {
+//             this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+//         }
+//     }
+// }).mount('#app');
